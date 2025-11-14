@@ -11,11 +11,49 @@ let errorT = document.querySelector(".invalid-feedback phone")
 let errorC = document.querySelector(".invalid-feedback password")
 let errorRC = document.querySelector(".invalid-feedback rePassword")
 
-formulario.addEventListener("submit", function(event){
+formulario.addEventListener('submit',function(event){
     event.preventDefault()
-    if(nombre.value == "" || mail.value == "" || (tel.value).length < 3 || (contra.value).length < 3 ||contra.value != recontra.value){
-        if(nombre.value == ""){
-            errorN.innerHTML = <p>no puede estar vacio</p>
+    if(nombre.value == '' || mail.value == '' || (tel.value).length < 8 || (contra.value).length < 3 || contra.value != reContra.value){
+        if(nombre.value == ''){
+            errorN.innerHTML = "<p>No puede estar vacio</p>"
+            errorN.style.display = 'block'
+        }
+        if(mail.value == ''){
+            errorM.innerHTML = "<p>No puede estar vacio</p>"
+            errorM.style.display = 'block'
+        }
+        if((tel.value).length < 8){
+            errorT.innerHTML = '<p> el telefono debe tener 8 caracteres como minimo </p>'
+            errorT.style.display = 'block'
+        }
+        if((contra.value).length < 3 ){
+            errorC.innerHTML = '<p> minimo 3 caracteres </p>'
+            errorC.style.display = 'block'
+        }
+        if(reContra.value != contra.value){
+            errorRC.innerHTML = '<p>debe ser igual a la contraseña</p>'
+            errorRC.style.display = 'block'
+        }
+        //ocultar los errores
+        if(nombre.value != ''){
+             errorN.style.display = 'none'
+        }
+        if(mail.value != ''){
+            errorM.style.display = 'none'
+        }
+        if((tel.value).length >= 8){
+            errorT.style.display = 'none'
+        }
+        if((contra.value).length >= 3 ){
+            errorC.style.display = 'none'
+        }
+        if(reContra.value == contra.value){
+            errorRC.style.display = 'none'
         }
     }
+
+    else{
+        this.submit()
+    }
+    
 })
